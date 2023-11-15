@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components/native'
 
 import { SignIn } from './src/screens/SignIn'
-import { Loading } from './src/screens/Loading'
+import { Loading } from './src/components/Loading'
 import theme from './src/theme'
 
 import {
