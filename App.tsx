@@ -1,3 +1,6 @@
+import 'react-native-get-random-values'
+import './src/libs/dayjs'
+
 import { StatusBar } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { AppProvider, UserProvider } from '@realm/react'
