@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useUser } from '@realm/react'
 import {
   useForegroundPermissions,
+  requestBackgroundPermissionsAsync,
   watchPositionAsync,
   LocationAccuracy,
   LocationSubscription,
@@ -27,6 +28,7 @@ import { Map } from '../../components/Map'
 
 import { licensePlateValidate } from '../../utils/licensePlateValidate'
 import { getAddressLocation } from '../../utils/getAddressLocation'
+import { startLocationTask } from '../../tasks/backgroundLocationTask'
 
 import { Container, Content, Message } from './styles'
 
@@ -49,7 +51,7 @@ export function Departure() {
   const descriptionRef = useRef<TextInput>(null)
   const licensePlateRef = useRef<TextInput>(null)
 
-  function handleDepartureRegister() {
+  async function handleDepartureRegister() {
     try {
       if (!licensePlateValidate(licensePlate)) {
         licensePlateRef.current?.focus()
@@ -67,7 +69,26 @@ export function Departure() {
         )
       }
 
-      setIsResgistering(false)
+      if (!currentCoords?.latitude && !currentCoords?.longitude) {
+        return Alert.alert(
+          'Localização',
+          'Não foi possível obter a localização atual. Tente novamente.',
+        )
+      }
+
+      setIsResgistering(true)
+
+      const backgroundPermissions = await requestBackgroundPermissionsAsync()
+
+      if (!backgroundPermissions.granted) {
+        setIsResgistering(false)
+        return Alert.alert(
+          'Localização',
+          'É necessário permitir que o App tenha acesso localização em segundo plano. Acesse as configurações do dispositivo e habilite "Permitir o tempo todo."',
+        )
+      }
+
+      await startLocationTask()
 
       realm.write(() => {
         realm.create(
