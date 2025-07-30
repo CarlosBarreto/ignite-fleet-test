@@ -1,8 +1,4 @@
 <div align="center">
-  <h1 style={{ margin: 0 }}>Ignite Fleet</h1>
-  <p style={{ marginTop: 0 }}>
-    Projeto desenvolvido durante o curso Ignite da Rocketseat.
-  </p>
   <img src="assets/illustration.png" alt="Ignite Fleet" />
 </div>
 
