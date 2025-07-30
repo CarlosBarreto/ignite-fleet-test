@@ -1,4 +1,4 @@
-<div align="center">
+<div>
   <img src="assets/illustration.png" alt="Ignite Fleet" />
 </div>
 
