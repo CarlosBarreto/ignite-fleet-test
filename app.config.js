@@ -31,7 +31,7 @@ module.exports = {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#202024',
       },
-      package: 'com.ranni.ignitefleet',
+      package: 'com.fleet.ignitefleet',
       permissions: [
         'ACCESS_FINE_LOCATION',
         'ACCESS_COARSE_LOCATION',

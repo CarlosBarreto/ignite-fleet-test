@@ -1,4 +1,4 @@
-package com.ranni.ignitefleet;
+package com.fleet.ignitefleet;
 
 import android.os.Build;
 import android.os.Bundle;
